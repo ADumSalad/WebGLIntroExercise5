@@ -4,8 +4,8 @@
 const WIN_Z = 0;  // default graphics window z coord in world space
 const WIN_LEFT = 0; const WIN_RIGHT = 1;  // default left and right x coords in world space
 const WIN_BOTTOM = 0; const WIN_TOP = 1;  // default top and bottom y coords in world space
-const INPUT_TRIANGLES_URL = "https://github.com/NCSUCGClassPrivate/exercise5/blob/async/triangles.json"; // triangles file loc
-const INPUT_ELLIPSOIDS_URL = "https://github.com/NCSUCGClassPrivate/exercise5/blob/async/ellipsoids.json"; // ellipsoids file loc
+const INPUT_TRIANGLES_URL = "https://raw.githubusercontent.com/NCSUCGClassPrivate/exercise5/async/triangles.json"; // triangles file loc
+const INPUT_ELLIPSOIDS_URL = "https://raw.githubusercontent.com/NCSUCGClassPrivate/exercise5/async/ellipsoids.json"; // ellipsoids file loc
 var Eye = new vec4.fromValues(0.5,0.5,-0.5,1.0); // default eye position in world space
 
 /* webgl globals */
@@ -58,14 +58,14 @@ function getJSONFile(url,descr) {
 
         // set up http request object
         var httpReq = new XMLHttpRequest(); // a new http request
-        httpReq.timeout = 2000; // wait 2 secs for async result then timeout
+        // httpReq.timeout = 2000; // wait 2 secs for async result then timeout
         httpReq.addEventListener("error", getFailed);
         httpReq.addEventListener("abort", getAborted);
         httpReq.addEventListener("timeout", getTimedOut);
         httpReq.addEventListener("load", getLoaded);
 
         // issue async get request
-        httpReq.open("GET",url,true); // init the request asynchronously
+        httpReq.open("GET",url,false); // init the request asynchronously
         httpReq.send(null); // send the request
         
         // wait for http request to complete
